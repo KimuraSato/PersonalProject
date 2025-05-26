@@ -30,7 +30,8 @@ public class Banda {
     private String perfil;
     private Boolean verificado;
 
-    public Banda() {}
+    public Banda() {
+    }
 
     public Banda(Long id, String nome, Nacao nacao, String email, String senha, String cpf, String perfil, Boolean verificado) {
         this.id = id;
@@ -43,7 +44,7 @@ public class Banda {
         this.verificado = verificado;
     }
 
-    public Banda(BandaDTO bandaDTO){
+    public Banda(BandaDTO bandaDTO) {
         this.id = bandaDTO.getId();
         this.nome = bandaDTO.getNome();
         this.nacao = bandaDTO.getNacao();

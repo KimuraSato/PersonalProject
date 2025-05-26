@@ -11,4 +11,4 @@ public interface IntegranteRepository extends JpaRepository<Integrante, Long> {
     Optional<Integrante> findById(Long id);
     Optional<Integrante> findByNome(String nome);
     
-} 
+}
