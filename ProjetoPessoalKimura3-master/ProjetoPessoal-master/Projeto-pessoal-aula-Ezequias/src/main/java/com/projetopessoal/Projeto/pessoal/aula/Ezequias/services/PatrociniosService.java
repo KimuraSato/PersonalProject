@@ -1,12 +1,16 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.services;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.IntegranteDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.PatrocinioDTO;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Integrante;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Patrocinio;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.repositories.PatrocinioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class PatrociniosService {
@@ -28,6 +32,12 @@ public class PatrociniosService {
     public PatrocinioDTO converterPatrociniosParaPatrociniosDTO(Patrocinio Patrocinio) {
         PatrocinioDTO PatrocinioDTO = new PatrocinioDTO(Patrocinio);
         return PatrocinioDTO;
+    }
+
+    public List<PatrocinioDTO> converterPatrociniosParaPatrociniosDTO(List<Patrocinio> patrocinios) {
+        return patrocinios.stream()
+                .map(this::converterPatrociniosParaPatrociniosDTO) // Reuses the single conversion method
+                .collect(Collectors.toList());
     }
 
     public Patrocinio buscarPatrociniosPorId(Long id) {
@@ -60,4 +70,11 @@ public class PatrociniosService {
         patrocinioRepository.deleteById(id);
 
     }
+
+    public List<PatrocinioDTO> buscarTodosPatrocinios() {
+        List<Patrocinio> list = patrocinioRepository.findAll();
+        // Now it calls the correct overloaded method for List conversion
+        return converterPatrociniosParaPatrociniosDTO(list);
+    }
+
 }

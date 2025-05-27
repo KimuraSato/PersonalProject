@@ -1,12 +1,16 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.services;
 
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.BandaDTO;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.IntegranteDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Banda;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Integrante;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.repositories.BandaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class BandaService {
@@ -28,6 +32,12 @@ public class BandaService {
     public BandaDTO converterBandaParaBandaDTO(Banda Banda) {
         BandaDTO BandaDTO = new BandaDTO(Banda);
         return BandaDTO;
+    }
+
+    public List<BandaDTO> converterBandaParaBandaDTO(List<Banda> bandas) {
+        return bandas.stream()
+                .map(this::converterBandaParaBandaDTO) // Reuses the single conversion method
+                .collect(Collectors.toList());
     }
 
     public Banda buscarBandaPorId(Long id) {
@@ -58,5 +68,10 @@ public class BandaService {
     public void deletarBanda(Long id) {
         bandaRepository.deleteById(id);
 
+    }
+
+    public List<BandaDTO> buscaTodasBandas() {
+        List<Banda> list = bandaRepository.findAll();
+        return converterBandaParaBandaDTO(list);
     }
 }

@@ -9,6 +9,10 @@ public class IntegranteDTO {
     private String nome;
 
     private Long idBanda;
+    // 1. Add a public no-argument constructor
+    public IntegranteDTO() {
+    }
+
 
     public IntegranteDTO(Integrante integrante){
         this.id = integrante.getId();

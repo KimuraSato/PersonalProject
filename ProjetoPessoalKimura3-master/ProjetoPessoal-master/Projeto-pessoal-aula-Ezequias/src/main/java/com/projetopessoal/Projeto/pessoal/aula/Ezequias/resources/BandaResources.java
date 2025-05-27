@@ -7,12 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/bandas")
 public class BandaResources {
 
     @Autowired
     private BandaService bandaService;
+
+    public ResponseEntity<List<BandaDTO>> getBandas(){
+        List<BandaDTO> list = bandaService.buscaTodasBandas();
+        return ResponseEntity.ok().body(list);
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<BandaDTO> buscarBandaPorId(@PathVariable Long id) {

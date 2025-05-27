@@ -1,12 +1,16 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.services;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.IntegranteDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.UsuarioDTO;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Integrante;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Usuario;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -51,6 +55,12 @@ public class UsuarioService {
         return usuarioDTO;
     }
 
+    public List<UsuarioDTO> converterUsuariosParaUsuarioDTO(List<Usuario> usuario) {
+        return usuario.stream()
+                .map(this::converterUsuarioParaUsuarioDTO) // Reuses the single conversion method
+                .collect(Collectors.toList());
+    }
+
     public Usuario buscarUsuarioPorId(Long id) {
         return usuarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
     }
@@ -82,4 +92,10 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
 
     }
+
+    public List<UsuarioDTO> buscarTodosUsuarios() {
+        List<Usuario> list = usuarioRepository.findAll();
+        return converterUsuariosParaUsuarioDTO(list);
+    }
+
 }

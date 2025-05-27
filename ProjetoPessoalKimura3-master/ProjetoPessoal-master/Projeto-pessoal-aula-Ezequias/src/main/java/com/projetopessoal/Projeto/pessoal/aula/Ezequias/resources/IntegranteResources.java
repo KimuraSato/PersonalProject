@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/integrantes")
@@ -14,6 +16,11 @@ public class IntegranteResources {
 
     @Autowired
     private IntegrantesService integrantesService;
+    @GetMapping
+    public ResponseEntity<List<IntegranteDTO>> getIntegrantes(){
+        List<IntegranteDTO> list = integrantesService.buscaTodos();
+        return ResponseEntity.ok().body(list);
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<IntegranteDTO> buscarIntegrantesPorId(@PathVariable Long id) {
@@ -28,18 +35,21 @@ public class IntegranteResources {
     }
 
     @PostMapping()
-    public ResponseEntity<IntegranteDTO> criarIntegrantes(@RequestBody IntegranteDTO usuarioDTO) {
-        return ResponseEntity.ok(integrantesService.salvarIntegrantes(usuarioDTO));
+    public ResponseEntity<IntegranteDTO> criarIntegrantes(@RequestBody IntegranteDTO integranteDTO) {
+        System.out.println("criando integrantes");
+        System.out.println(integranteDTO.getIdBanda());
+        System.out.println(integranteDTO.getNome());
+        return ResponseEntity.ok(integrantesService.salvarIntegrantes(integranteDTO));
     }
 
     @PutMapping()
-    public ResponseEntity<IntegranteDTO> atualizarIntegrantes(@RequestBody IntegranteDTO usuarioDTO) {
-        return ResponseEntity.ok(integrantesService.atualizarIntegrantes(usuarioDTO));
+    public ResponseEntity<IntegranteDTO> atualizarIntegrantes(@RequestBody IntegranteDTO integranteDTO) {
+        return ResponseEntity.ok(integrantesService.atualizarIntegrantes(integranteDTO));
     }
 
     @DeleteMapping()
-    public ResponseEntity<IntegranteDTO> deletarIntegrantes(@RequestBody IntegranteDTO usuarioDTO) {
-        integrantesService.deletarIntegrantes(usuarioDTO.getId());
+    public ResponseEntity<IntegranteDTO> deletarIntegrantes(@RequestBody IntegranteDTO integranteDTO) {
+        integrantesService.deletarIntegrantes(integranteDTO.getId());
         return ResponseEntity.noContent().build();
     }
 }

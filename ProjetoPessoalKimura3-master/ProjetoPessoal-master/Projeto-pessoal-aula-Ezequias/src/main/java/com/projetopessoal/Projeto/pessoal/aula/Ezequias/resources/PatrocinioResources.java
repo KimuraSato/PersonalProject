@@ -1,5 +1,6 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.resources;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.IntegranteDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.PatrocinioDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Patrocinio;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.services.PatrociniosService;
@@ -7,12 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/patrocinios")
 public class PatrocinioResources {
 
     @Autowired
     private PatrociniosService patrociniosService;
+
+    public ResponseEntity<List<PatrocinioDTO>> getPatrocinios(){
+        List<PatrocinioDTO> list = patrociniosService.buscarTodosPatrocinios();
+        return ResponseEntity.ok().body(list);
+    }
 
     @GetMapping("{id}")
     public ResponseEntity<PatrocinioDTO> buscarPatrociniosPorId(@PathVariable Long id) {
@@ -26,6 +34,8 @@ public class PatrocinioResources {
                 .converterPatrociniosParaPatrociniosDTO(patrociniosService.buscarPatrociniosPorNome(nome));
         return ResponseEntity.ok(patrocinioDTO);
     }
+
+
 
     @PostMapping()
     public ResponseEntity<PatrocinioDTO> criarPatrocinios(@RequestBody PatrocinioDTO usuarioDTO) {

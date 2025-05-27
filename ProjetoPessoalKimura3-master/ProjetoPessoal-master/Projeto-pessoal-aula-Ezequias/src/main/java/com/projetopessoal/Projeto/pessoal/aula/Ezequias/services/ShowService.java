@@ -1,14 +1,18 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.services;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.ProdutoraDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.ShowDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.UsuarioDTO;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Produtora;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Show;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Usuario;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.repositories.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ShowService {
@@ -46,6 +50,12 @@ public class ShowService {
         return showDTO;
     }
 
+    public List<ShowDTO> converterShowParaShowDTO(List<Show> shows) {
+        return shows.stream()
+                .map(this::converterShowParaShowDTO) // Reuses the single conversion method
+                .collect(Collectors.toList());
+    }
+
     public Show buscarShowPorId(Long id) {
         return showRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Show não encontrado"));
     }
@@ -75,4 +85,10 @@ public class ShowService {
         showRepository.deleteById(id);
 
     }
+
+    public List<ShowDTO> buscarTodosShows(){
+        List<Show> list = showRepository.findAll();
+        return converterShowParaShowDTO(list);
+    }
+
     }

@@ -6,7 +6,9 @@ import com.projetopessoal.Projeto.pessoal.aula.Ezequias.repositories.IntegranteR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class IntegrantesService {
@@ -20,15 +22,22 @@ public class IntegrantesService {
         return converterIntegrantesParaIntegrantesDTO(Integrante);
     }
 
-    private Integrante converterIntegrantesDTOParaIntegrantes(IntegranteDTO IntegranteDTO) {
-        Integrante Integrante = new Integrante(IntegranteDTO);
-        return Integrante;
+    private Integrante converterIntegrantesDTOParaIntegrantes(IntegranteDTO integranteDTO) {
+        Integrante integrante = new Integrante(integranteDTO);
+        return integrante;
     }
 
     public IntegranteDTO converterIntegrantesParaIntegrantesDTO(Integrante Integrante) {
         IntegranteDTO IntegranteDTO = new IntegranteDTO(Integrante);
         return IntegranteDTO;
     }
+    // --- NEW METHOD FOR LIST CONVERSION ---
+    public List<IntegranteDTO> converterIntegrantesParaIntegrantesDTO(List<Integrante> integrantes) {
+        return integrantes.stream()
+                .map(this::converterIntegrantesParaIntegrantesDTO) // Reuses the single conversion method
+                .collect(Collectors.toList());
+    }
+    // ------------------------------------
 
     public Integrante buscarIntegrantesPorId(Long id) {
         return integranteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Integrante não encontrado"));
@@ -58,5 +67,11 @@ public class IntegrantesService {
     public void deletarIntegrantes(Long id) {
         integranteRepository.deleteById(id);
 
+    }
+
+    public List<IntegranteDTO> buscaTodos() {
+        List<Integrante> list = integranteRepository.findAll();
+        // Now it calls the correct overloaded method for List conversion
+        return converterIntegrantesParaIntegrantesDTO(list);
     }
 }

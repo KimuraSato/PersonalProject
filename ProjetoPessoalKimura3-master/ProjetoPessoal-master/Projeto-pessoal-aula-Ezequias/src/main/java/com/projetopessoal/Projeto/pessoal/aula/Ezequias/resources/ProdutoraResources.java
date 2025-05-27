@@ -1,5 +1,6 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.resources;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.PatrocinioDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.ProdutoraDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Produtora;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.services.ProdutorasService;
@@ -7,12 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/produtoras")
 public class ProdutoraResources {
     @Autowired
     private ProdutorasService produtorasService;
     @GetMapping("{id}")
+
+    public ResponseEntity<List<ProdutoraDTO>> getProdutoras(){
+        List<ProdutoraDTO> list = produtorasService.buscarTodasProdutoras();
+        return ResponseEntity.ok().body(list);
+    }
+
     public ResponseEntity<ProdutoraDTO> buscarProdutorasPorId(@PathVariable Long id) {
         Produtora produtora = produtorasService.buscarProdutorasPorId(id);
         return ResponseEntity.ok(produtorasService.converterProdutorasParaProdutorasDTO(produtora));
