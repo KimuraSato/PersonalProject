@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/api/integrantes")
 public class IntegranteResources {
@@ -28,6 +28,7 @@ public class IntegranteResources {
         return ResponseEntity.ok(integrantesService.converterIntegrantesParaIntegrantesDTO(integrante));
     }
 
+
     @GetMapping("/buscar")
     public ResponseEntity<IntegranteDTO> buscarIntegrantesPorEmail(@RequestParam String nome) {
         IntegranteDTO integranteDTO = integrantesService.converterIntegrantesParaIntegrantesDTO(integrantesService.buscarIntegrantesPorNome(nome));
@@ -42,14 +43,18 @@ public class IntegranteResources {
         return ResponseEntity.ok(integrantesService.salvarIntegrantes(integranteDTO));
     }
 
-    @PutMapping()
+
+
+    @PutMapping("{id}")
     public ResponseEntity<IntegranteDTO> atualizarIntegrantes(@RequestBody IntegranteDTO integranteDTO) {
         return ResponseEntity.ok(integrantesService.atualizarIntegrantes(integranteDTO));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<IntegranteDTO> deletarIntegrantes(@RequestBody IntegranteDTO integranteDTO) {
         integrantesService.deletarIntegrantes(integranteDTO.getId());
         return ResponseEntity.noContent().build();
     }
+
+
 }
