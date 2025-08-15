@@ -16,7 +16,7 @@ public class ShowResources {
 
     @Autowired
     private ShowService showService;
-
+    @GetMapping
     public ResponseEntity<List<ShowDTO>> getShows(){
         List<ShowDTO> list = showService.buscarTodosShows();
         return ResponseEntity.ok().body(list);
@@ -39,12 +39,12 @@ public class ShowResources {
         return ResponseEntity.ok(showService.salvarShow(showDTO));
     }
 
-    @PutMapping()
+    @PutMapping("{id}")
     public ResponseEntity<ShowDTO> atualizarShow(@RequestBody ShowDTO showDTO){
         return ResponseEntity.ok(showService.atualizarShow(showDTO));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<ShowDTO> deletarShow(@RequestBody ShowDTO showDTO){
         showService.deletarShow(showDTO.getId());
         return ResponseEntity.noContent().build();

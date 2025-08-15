@@ -13,7 +13,8 @@ public enum Nacao {
     TALIS("Talis", "TL"),
     EVERMORE("Evermore", "EM"),
     LUNARIA("Lunaria", "LU"),
-    BELMORE("Belmore", "BE");
+    BELMORE("Belmore", "BE"),
+    ROTR("Rotr", "Ro");
 
     private final String descricao;
     private final String sigla;

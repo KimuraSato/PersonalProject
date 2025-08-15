@@ -21,26 +21,24 @@ public class Banda {
     private String email;
     private String senha;
 
-    @Column(unique = true)
-    private String cpf;
+//    @Column(unique = true)
+//    private String cpf;
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
-    private String perfil;
+
     private Boolean verificado;
 
     public Banda() {
     }
 
-    public Banda(Long id, String nome, Nacao nacao, String email, String senha, String cpf, String perfil, Boolean verificado) {
+    public Banda(Long id, String nome, Nacao nacao, String email, String senha,  Boolean verificado) {
         this.id = id;
         this.nome = nome;
         this.nacao = nacao;
         this.email = email;
         this.senha = senha;
-        this.cpf = cpf;
-        this.perfil = perfil;
         this.verificado = verificado;
     }
 
@@ -50,9 +48,9 @@ public class Banda {
         this.nacao = bandaDTO.getNacao();
         this.email = bandaDTO.getEmail();
         this.senha = bandaDTO.getSenha();
-        this.cpf = bandaDTO.getCpf();
+//        this.cpf = bandaDTO.getCpf();
         this.dataNascimento = bandaDTO.getDataNascimento();
-        this.perfil = bandaDTO.getPerfil();
+
         this.verificado = bandaDTO.getVerificado();
     }
 
@@ -96,13 +94,13 @@ public class Banda {
         this.senha = senha;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
+//    public String getCpf() {
+//        return cpf;
+//    }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+//    public void setCpf(String cpf) {
+//        this.cpf = cpf;
+//    }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
@@ -112,13 +110,7 @@ public class Banda {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getPerfil() {
-        return perfil;
-    }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
 
     public Boolean getVerificado() {
         return verificado;
@@ -132,11 +124,11 @@ public class Banda {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Banda banda = (Banda) o;
-        return Objects.equals(id, banda.id) && Objects.equals(nome, banda.nome) && nacao == banda.nacao && Objects.equals(email, banda.email) && Objects.equals(senha, banda.senha) && Objects.equals(cpf, banda.cpf) && Objects.equals(dataNascimento, banda.dataNascimento) && Objects.equals(perfil, banda.perfil) && Objects.equals(verificado, banda.verificado);
+        return Objects.equals(id, banda.id) && Objects.equals(nome, banda.nome) && nacao == banda.nacao && Objects.equals(email, banda.email) && Objects.equals(senha, banda.senha)  && Objects.equals(dataNascimento, banda.dataNascimento)  && Objects.equals(verificado, banda.verificado);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, nacao, email, senha, cpf, dataNascimento, perfil, verificado);
+        return Objects.hash(id, nome, nacao, email, senha,  dataNascimento,  verificado);
     }
 }

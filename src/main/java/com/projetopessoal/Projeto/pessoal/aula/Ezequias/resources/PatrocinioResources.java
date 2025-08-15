@@ -16,7 +16,7 @@ public class PatrocinioResources {
 
     @Autowired
     private PatrociniosService patrociniosService;
-
+    @GetMapping
     public ResponseEntity<List<PatrocinioDTO>> getPatrocinios(){
         List<PatrocinioDTO> list = patrociniosService.buscarTodosPatrocinios();
         return ResponseEntity.ok().body(list);
@@ -42,12 +42,12 @@ public class PatrocinioResources {
         return ResponseEntity.ok(patrociniosService.salvarPatrocinios(usuarioDTO));
     }
 
-    @PutMapping()
+    @PutMapping("{id}")
     public ResponseEntity<PatrocinioDTO> atualizarPrdoutoras(@RequestBody PatrocinioDTO usuarioDTO) {
         return ResponseEntity.ok(patrociniosService.atualizarPatrocinios(usuarioDTO));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<PatrocinioDTO> deletarPatrocinios(@RequestBody PatrocinioDTO usuarioDTO) {
         patrociniosService.deletarPatrocinios(usuarioDTO.getId());
         return ResponseEntity.noContent().build();

@@ -15,13 +15,13 @@ import java.util.List;
 public class ProdutoraResources {
     @Autowired
     private ProdutorasService produtorasService;
-    @GetMapping("{id}")
 
+    @GetMapping
     public ResponseEntity<List<ProdutoraDTO>> getProdutoras(){
         List<ProdutoraDTO> list = produtorasService.buscarTodasProdutoras();
         return ResponseEntity.ok().body(list);
     }
-
+    @GetMapping("{id}")
     public ResponseEntity<ProdutoraDTO> buscarProdutorasPorId(@PathVariable Long id) {
         Produtora produtora = produtorasService.buscarProdutorasPorId(id);
         return ResponseEntity.ok(produtorasService.converterProdutorasParaProdutorasDTO(produtora));
@@ -35,11 +35,11 @@ public class ProdutoraResources {
     public ResponseEntity<ProdutoraDTO> criarProdutoras(@RequestBody ProdutoraDTO usuarioDTO) {
         return ResponseEntity.ok(produtorasService.salvarProdutoras(usuarioDTO));
     }
-    @PutMapping()
+    @PutMapping("{id}")
     public ResponseEntity<ProdutoraDTO> atualizarPrdoutoras(@RequestBody ProdutoraDTO usuarioDTO){
         return ResponseEntity.ok(produtorasService.atualizarProdutoras(usuarioDTO));
     }
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<ProdutoraDTO> deletarProdutoras(@RequestBody ProdutoraDTO usuarioDTO){
         produtorasService.deletarProdutoras(usuarioDTO.getId());
         return ResponseEntity.noContent().build();

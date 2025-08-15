@@ -15,7 +15,7 @@ public class BandaResources {
 
     @Autowired
     private BandaService bandaService;
-
+    @GetMapping
     public ResponseEntity<List<BandaDTO>> getBandas(){
         List<BandaDTO> list = bandaService.buscaTodasBandas();
         return ResponseEntity.ok().body(list);
@@ -39,12 +39,12 @@ public class BandaResources {
         return ResponseEntity.ok(bandaService.salvarBanda(usuarioDTO));
     }
 
-    @PutMapping()
+    @PutMapping("{id}")
     public ResponseEntity<BandaDTO> atualizarPrdoutoras(@RequestBody BandaDTO usuarioDTO) {
         return ResponseEntity.ok(bandaService.atualizarBanda(usuarioDTO));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<BandaDTO> deletarBanda(@RequestBody BandaDTO usuarioDTO) {
         bandaService.deletarBanda(usuarioDTO.getId());
         return ResponseEntity.noContent().build();

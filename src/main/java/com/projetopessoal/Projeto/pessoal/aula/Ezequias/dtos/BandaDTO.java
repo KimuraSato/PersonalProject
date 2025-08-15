@@ -15,7 +15,7 @@ public class BandaDTO {
     private String senha;
     private String cpf;
     private LocalDate dataNascimento;
-    private String perfil;
+
     private Boolean verificado;
 
     public BandaDTO() {}
@@ -26,9 +26,9 @@ public class BandaDTO {
         this.nacao = banda.getNacao();
         this.email = banda.getEmail();
         this.senha = banda.getSenha();
-        this.cpf = banda.getCpf();
+
         this.dataNascimento = banda.getDataNascimento();
-        this.perfil = banda.getPerfil();
+
         this.verificado = banda.getVerificado();
     }
 
@@ -88,13 +88,9 @@ public class BandaDTO {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getPerfil() {
-        return perfil;
-    }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
-    }
+
+
 
     public Boolean getVerificado() {
         return verificado;

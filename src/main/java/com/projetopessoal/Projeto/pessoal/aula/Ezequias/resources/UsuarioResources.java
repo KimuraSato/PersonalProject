@@ -16,7 +16,7 @@ public class UsuarioResources {
 
     @Autowired
     private UsuarioService usuarioService;
-
+    @GetMapping
     public ResponseEntity<List<UsuarioDTO>> getUsuarios(){
         List<UsuarioDTO> list = usuarioService.buscarTodosUsuarios();
         return ResponseEntity.ok().body(list);
@@ -39,12 +39,12 @@ public class UsuarioResources {
         return ResponseEntity.ok(usuarioService.salvarUsuario(usuarioDTO));
     }
 
-    @PutMapping()
+    @PutMapping("{id}")
     public ResponseEntity<UsuarioDTO> atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         return ResponseEntity.ok(usuarioService.atualizarUsuario(usuarioDTO));
     }
 
-    @DeleteMapping()
+    @DeleteMapping("{id}")
     public ResponseEntity<UsuarioDTO> deletarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         usuarioService.deletarUsuario(usuarioDTO.getId());
         return ResponseEntity.noContent().build();
