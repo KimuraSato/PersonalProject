@@ -4,9 +4,11 @@ import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Patrocinio;
 
 public class PatrocinioDTO {
 
-    private Long id;
-    private String nome;
-    private Long idBanda;
+    Long id;
+    String nome;
+    Long idBanda;
+    Long CPF;
+    String contatoOficial;
 
     public PatrocinioDTO() {}
 
@@ -14,6 +16,8 @@ public class PatrocinioDTO {
         this.id = patrocinio.getId();
         this.nome = patrocinio.getNome();
         this.idBanda = patrocinio.getIdBanda();
+        this.CPF = patrocinio.getCPF();
+        this.contatoOficial = patrocinio.getContatoOficial();
     }
 
     public Long getId() {
@@ -36,8 +40,23 @@ public class PatrocinioDTO {
         return idBanda;
     }
 
-    public void setIdBanda(Long id) {
-        this.idBanda = id;
+    public void setIdBanda(Long idBanda) {
+        this.idBanda = idBanda;
     }
 
+    public Long getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(Long CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getContatoOficial() {
+        return contatoOficial;
+    }
+
+    public void setContatoOficial(String contatoOficial) {
+        this.contatoOficial = contatoOficial;
+    }
 }

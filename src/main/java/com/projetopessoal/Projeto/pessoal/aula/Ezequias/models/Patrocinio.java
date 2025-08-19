@@ -13,19 +13,25 @@ public class Patrocinio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String nome;
-    Long idbanda;
+    Long idBanda;
+    Long CPF;
+    String contatoOficial;
 
 
-    public Patrocinio(Long id, String nome, Long idbanda) {
+    public Patrocinio(Long id, String nome, Long idBanda, Long CPF, String contatoOficial) {
         this.id = id;
         this.nome = nome;
-        this.idbanda = idbanda;
+        this.idBanda = idBanda;
+        this.CPF = CPF;
+        this.contatoOficial = contatoOficial;
     }
 
     public Patrocinio(PatrocinioDTO patrocinioDTO) {
         this.id = patrocinioDTO.getId();
         this.nome = patrocinioDTO.getNome();
-        this.idbanda = patrocinioDTO.getIdBanda();
+        this.idBanda = patrocinioDTO.getIdBanda();
+        this.CPF = patrocinioDTO.getCPF();
+        this.contatoOficial = patrocinioDTO.getContatoOficial();
     }
 
     public Patrocinio() {
@@ -49,22 +55,38 @@ public class Patrocinio {
     }
 
     public Long getIdBanda() {
-        return idbanda;
+        return idBanda;
     }
 
-    public void setIdBanda(Long id) {
-        this.idbanda = id;
+    public void setIdBanda(Long idBanda) {
+        this.idBanda = idBanda;
+    }
+
+    public Long getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(Long CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getContatoOficial() {
+        return contatoOficial;
+    }
+
+    public void setContatoOficial(String contatoOficial) {
+        this.contatoOficial = contatoOficial;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Patrocinio that = (Patrocinio) o;
-        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(idbanda, that.idbanda);
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(idBanda, that.idBanda) && Objects.equals(CPF, that.CPF) && Objects.equals(contatoOficial, that.contatoOficial);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, idbanda);
+        return Objects.hash(id, nome, idBanda, CPF, contatoOficial);
     }
 }
