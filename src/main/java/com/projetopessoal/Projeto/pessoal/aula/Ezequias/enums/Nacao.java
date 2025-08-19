@@ -2,19 +2,12 @@ package com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums;
 
 public enum Nacao {
 
-    EXILED_KINGDOM("Exiled Kingdom", "EK"),
-    ERYA("Erya", "ER"),
-    ASKAR("Askar", "AS"),
-    MOONSHADE("Moonshade", "MS"),
-    LIONES("Liones", "LI"),
-    ALCANA("Alcana", "AL"),
-    ALTEA("Altea", "AT"),
-    NEVERLAND("Neverland", "NL"),
-    TALIS("Talis", "TL"),
-    EVERMORE("Evermore", "EM"),
-    LUNARIA("Lunaria", "LU"),
-    BELMORE("Belmore", "BE"),
-    ROTR("Rotr", "Ro");
+    ROTR("Rotr", "Ro"),
+    AMAI("Amai", "Am"),
+    VAELORA("Vaelora", "Va"),
+    CORINTH("Corinth", "Co"),
+    ATALAN("Atalan", "At"),
+    DUNWALL("Dunwall", "Du");
 
     private final String descricao;
     private final String sigla;
