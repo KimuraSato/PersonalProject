@@ -2,21 +2,21 @@ package com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos;
 
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Nacao;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Status;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.models.Banda;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Objects;
 
 public class BandaDTO {
 
     private Long id;
     private String nome;
     private Nacao nacao;
-    private String email;
-    private String senha;
-    private String cpf;
-    private LocalDate dataNascimento;
-
-    private Boolean verificado;
+    private String generoMusical;
+    private Date dataCriacao;
+    private Status status;
 
     public BandaDTO() {}
 
@@ -24,12 +24,9 @@ public class BandaDTO {
         this.id = banda.getId();
         this.nome = banda.getNome();
         this.nacao = banda.getNacao();
-        this.email = banda.getEmail();
-        this.senha = banda.getSenha();
-
-        this.dataNascimento = banda.getDataNascimento();
-
-        this.verificado = banda.getVerificado();
+        this.generoMusical = banda.getGeneroMusical();
+        this.dataCriacao = banda.getDataCriacao();
+        this.status = banda.getStatus();
     }
 
     public Long getId() {
@@ -56,47 +53,39 @@ public class BandaDTO {
         this.nacao = nacao;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGeneroMusical() {
+        return generoMusical;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGeneroMusical(String generoMusical) {
+        this.generoMusical = generoMusical;
     }
 
-    public String getSenha() {
-        return senha;
+    public Date getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        BandaDTO bandaDTO = (BandaDTO) o;
+        return Objects.equals(id, bandaDTO.id) && Objects.equals(nome, bandaDTO.nome) && nacao == bandaDTO.nacao && Objects.equals(generoMusical, bandaDTO.generoMusical) && Objects.equals(dataCriacao, bandaDTO.dataCriacao) && status == bandaDTO.status;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-
-
-
-
-    public Boolean getVerificado() {
-        return verificado;
-    }
-
-    public void setVerificado(Boolean verificado) {
-        this.verificado = verificado;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, nacao, generoMusical, dataCriacao, status);
     }
 }

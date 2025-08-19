@@ -2,6 +2,7 @@ package com.projetopessoal.Projeto.pessoal.aula.Ezequias.models;
 
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.BandaDTO;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Nacao;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Status;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,41 +18,29 @@ public class Banda {
     private Long id;
     private String nome;
     private Nacao nacao;
-    @Column(unique = true)
-    private String email;
-    private String senha;
-
-//    @Column(unique = true)
-//    private String cpf;
-
-    @Column(name = "data_nascimento")
-    private LocalDate dataNascimento;
-
-
-    private Boolean verificado;
+    private String generoMusical;
+    private Date dataCriacao;
+    private Status status;
 
     public Banda() {
     }
 
-    public Banda(Long id, String nome, Nacao nacao, String email, String senha,  Boolean verificado) {
+    public Banda(Long id, String nome, Nacao nacao, String generoMusical, Date dataCriacao, Status status ) {
         this.id = id;
         this.nome = nome;
         this.nacao = nacao;
-        this.email = email;
-        this.senha = senha;
-        this.verificado = verificado;
+        this.generoMusical = generoMusical;
+        this.dataCriacao = new Date();
+        this.status = status;
     }
 
     public Banda(BandaDTO bandaDTO) {
         this.id = bandaDTO.getId();
         this.nome = bandaDTO.getNome();
         this.nacao = bandaDTO.getNacao();
-        this.email = bandaDTO.getEmail();
-        this.senha = bandaDTO.getSenha();
-//        this.cpf = bandaDTO.getCpf();
-        this.dataNascimento = bandaDTO.getDataNascimento();
-
-        this.verificado = bandaDTO.getVerificado();
+        this.generoMusical = bandaDTO.getGeneroMusical();
+        this.dataCriacao = bandaDTO.getDataCriacao();
+        this.status = bandaDTO.getStatus();
     }
 
     public Long getId() {
@@ -78,57 +67,39 @@ public class Banda {
         this.nacao = nacao;
     }
 
-    public String getEmail() {
-        return email;
+    public String getGeneroMusical() {
+        return generoMusical;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setGeneroMusical(String generoMusical) {
+        this.generoMusical = generoMusical;
     }
 
-    public String getSenha() {
-        return senha;
+    public Date getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-//    public String getCpf() {
-//        return cpf;
-//    }
-
-//    public void setCpf(String cpf) {
-//        this.cpf = cpf;
-//    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-
-
-    public Boolean getVerificado() {
-        return verificado;
-    }
-
-    public void setVerificado(Boolean verificado) {
-        this.verificado = verificado;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Banda banda = (Banda) o;
-        return Objects.equals(id, banda.id) && Objects.equals(nome, banda.nome) && nacao == banda.nacao && Objects.equals(email, banda.email) && Objects.equals(senha, banda.senha)  && Objects.equals(dataNascimento, banda.dataNascimento)  && Objects.equals(verificado, banda.verificado);
+        return Objects.equals(id, banda.id) && Objects.equals(nome, banda.nome) && nacao == banda.nacao && Objects.equals(generoMusical, banda.generoMusical) && Objects.equals(dataCriacao, banda.dataCriacao) && status == banda.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, nacao, email, senha,  dataNascimento,  verificado);
+        return Objects.hash(id, nome, nacao, generoMusical, dataCriacao, status);
     }
 }
