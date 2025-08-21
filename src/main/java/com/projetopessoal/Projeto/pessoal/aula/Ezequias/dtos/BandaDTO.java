@@ -1,5 +1,6 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos;
 
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.GeneroMusical;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Nacao;
 
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Status;
@@ -14,7 +15,7 @@ public class BandaDTO {
     private Long id;
     private String nome;
     private Nacao nacao;
-    private String generoMusical;
+    private GeneroMusical generoMusical;
     private Date dataCriacao;
     private Status status;
 
@@ -53,11 +54,11 @@ public class BandaDTO {
         this.nacao = nacao;
     }
 
-    public String getGeneroMusical() {
+    public GeneroMusical getGeneroMusical() {
         return generoMusical;
     }
 
-    public void setGeneroMusical(String generoMusical) {
+    public void setGeneroMusical(GeneroMusical generoMusical) {
         this.generoMusical = generoMusical;
     }
 

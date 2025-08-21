@@ -32,6 +32,7 @@ public class IntegranteDTO {
         this.id = integrante.getId();
         this.nome = integrante.getNome();
         this.idBanda = integrante.getIdBanda();
+        this.nomeArtistico = integrante.getNomeArtistico();
         this.CPF = integrante.getCPF();
         this.email = integrante.getEmail();
         this.telefone = integrante.getTelefone();

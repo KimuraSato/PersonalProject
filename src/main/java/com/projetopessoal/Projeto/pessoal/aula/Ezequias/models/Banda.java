@@ -1,6 +1,7 @@
 package com.projetopessoal.Projeto.pessoal.aula.Ezequias.models;
 
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.dtos.BandaDTO;
+import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.GeneroMusical;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Nacao;
 import com.projetopessoal.Projeto.pessoal.aula.Ezequias.enums.Status;
 import jakarta.persistence.*;
@@ -18,14 +19,14 @@ public class Banda {
     private Long id;
     private String nome;
     private Nacao nacao;
-    private String generoMusical;
+    private GeneroMusical generoMusical;
     private Date dataCriacao;
     private Status status;
 
     public Banda() {
     }
 
-    public Banda(Long id, String nome, Nacao nacao, String generoMusical, Date dataCriacao, Status status ) {
+    public Banda(Long id, String nome, Nacao nacao, GeneroMusical generoMusical, Date dataCriacao, Status status ) {
         this.id = id;
         this.nome = nome;
         this.nacao = nacao;
@@ -67,11 +68,11 @@ public class Banda {
         this.nacao = nacao;
     }
 
-    public String getGeneroMusical() {
+    public GeneroMusical getGeneroMusical() {
         return generoMusical;
     }
 
-    public void setGeneroMusical(String generoMusical) {
+    public void setGeneroMusical(GeneroMusical generoMusical) {
         this.generoMusical = generoMusical;
     }
 

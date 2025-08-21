@@ -58,6 +58,7 @@ public class IntegrantesService {
                 -> new IllegalArgumentException("Integrante não encontrado"));
 
         integrante = converterIntegrantesDTOParaIntegrantes(integranteDTO);
+
         integrante = integranteRepository.save(integrante);
 
         return converterIntegrantesParaIntegrantesDTO(integrante);
